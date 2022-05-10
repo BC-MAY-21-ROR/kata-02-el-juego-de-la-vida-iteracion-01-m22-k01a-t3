@@ -7,6 +7,7 @@ class Game
     puts "Elegir alto del tablero"
     HEIGHT = gets.chomp.to_i
     
+    #Funcion que define que estado de celula
     def init
         #Nuevo grid vacío 
         @grid = empty_grid
@@ -17,11 +18,24 @@ class Game
                     LIVE #celula viva
                 else
                     DEAD #celula muerta
-                end    
-            end    
+                end
+            end
         end
         
-    end    
+    end
 
+    #Funcion que genera tablero con celulas muertas
+    def empty_grid
+        Array.new(HEIGHT){ Array.new(WIDTH) {DEAD} }
+    end
 
+    def print_grid
+        system "cls"
+
+        rows = @grid.map do |row|
+            row.join(" ")
+        end
+
+        print rows.join("\n")
+    end
 end
