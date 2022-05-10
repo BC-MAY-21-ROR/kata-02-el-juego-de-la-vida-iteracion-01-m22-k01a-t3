@@ -30,7 +30,7 @@ class Game
     end
 
     def print_grid
-        system "cls"
+        # system "cls"
 
         rows = @grid.map do |row|
             row.join(" ")
@@ -38,4 +38,36 @@ class Game
 
         print rows.join("\n")
     end
+
+    def prueba 
+        print_grid
+        new_grid = empty_grid
+
+        @grid.each_with_index do |row,row_index|
+            row.each_with_index do |cell,cell_index|
+                
+                neighbors = find_neighbors(row_index,cell_index)
+
+                if cell = LIVE
+                    state = neighbors.size.between?(2,3)
+                else
+                    state = neighbors.size == 3
+                end
+
+                new_grid[row_index][cell_index] = state? LIVE : DEAD
+
+            end
+
+        end
+
+        @grid = new_grid
+        reinicio
+    end
+
+
+
+    
+ 
 end
+
+Game.new
